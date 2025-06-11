@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { AuthProvider } from './contexts/AuthContext';
 
 // Layout
 import Layout from './components/layout/Layout';
@@ -23,26 +24,28 @@ const Team = lazy(() => import('./pages/Team'));
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <Layout>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/portfolio/:projectId" element={<ProjectDetail />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/application-dashboard" element={<ApplicationDashboard />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:postId" element={<BlogPost />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/team" element={<Team />} />
-            </Routes>
-          </Suspense>
-        </Layout>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Layout>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/portfolio/:projectId" element={<ProjectDetail />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/application-dashboard" element={<ApplicationDashboard />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:postId" element={<BlogPost />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/team" element={<Team />} />
+              </Routes>
+            </Suspense>
+          </Layout>
+        </Router>
+      </AuthProvider>
     </HelmetProvider>
   );
 }
