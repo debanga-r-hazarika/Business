@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Code, BarChart3, Paintbrush, Search, Users, FileText, LineChart, PenTool, MessageCircle, ChevronDown, CheckCircle, Monitor, Database } from 'lucide-react';
 import Section from '../components/ui/Section';
 import SectionTitle from '../components/ui/SectionTitle';
